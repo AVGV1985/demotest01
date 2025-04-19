@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Whimsy World</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #F5E7DE;
+      color: #333;
+      display: flex;
+      height: 100vh;
+    }
+
+    aside {
+      width: 200px;
+      background-color: #F2BFA4;
+      padding: 2rem 1rem;
+      box-sizing: border-box;
+    }
+
+    aside nav a {
+      display: block;
+      margin-bottom: 1rem;
+      color: #333;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 8px;
+    }
+
+    aside nav a:hover {
+      background-color: #e6a78d;
+    }
+
+    main {
+      flex: 1;
+      padding: 2rem;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .page {
+      display: none;
+      max-width: 600px;
+      text-align: center;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    h1 {
+      margin-top: 0;
+    }
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.gallery img {
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.9);
+}
+
+.lightbox-content {
+  display: block;
+  margin: auto;
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.3);
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.close:hover {
+  color: #f2bfa4;
+}
+
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.lightbox-content {
+  display: block;
+  margin: auto;
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.close:hover {
+  color: #f2bfa4;
+}
+
+.nav {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  color: white;
+  font-size: 50px;
+  font-weight: bold;
+  padding: 20px;
+  transform: translateY(-50%);
+  user-select: none;
+  transition: 0.3s;
+}
+
+.nav.left {
+  left: 10px;
+}
+
+.nav.right {
+  right: 10px;
+}
+
+.nav:hover {
+  color: #f2bfa4;
+}
+
+
+  </style>
+</head>
+
+<!-- Fullscreen Image Preview with Navigation -->
+<div id="lightbox" class="lightbox">
+  <span class="close" onclick="closeLightbox()">&times;</span>
+  <span class="nav left" onclick="changeImage(-1)">&#10094;</span>
+  <img class="lightbox-content" id="lightbox-img">
+  <span class="nav right" onclick="changeImage(1)">&#10095;</span>
+</div>
+
+
+<body>
+
+  <aside>
+    <nav>
+      <a onclick="showPage('home')">🏠 Home</a>
+      <a onclick="showPage('blorptown')">🌆 Blorptown</a>
+      <a onclick="showPage('zindleverse')">🌌 Zindleverse</a>
+      <a onclick="showPage('frobohub')">🤖 Frobohub</a>
+    </nav>
+  </aside>
+
+  <main>
+    <div id="home" class="page active">
+      <div>
+        <h1>Welcome to Whimsy World</h1>
+        <h2>Explore curious corners of creativity</h2>
+        <p>Select a destination from the left menu to begin your journey.</p>
+      </div>
+    </div>
+
+    <div id="blorptown" class="page">
+      <div>
+        <h1>Welcome to Blorptown</h1>
+        <p>Blorptown is a cozy little nook where quirky ideas grow on trees and creativity never sleeps.</p>
+
+	<div class="gallery">
+      		<img src="imagem1.png" alt="Blorptown Image 1">
+      		<img src="imagem2.png" alt="Blorptown Image 2">
+      		<img src="imagem3.png" alt="Blorptown Image 3">
+    	</div>
+      </div>
+    </div>
+
+    <div id="zindleverse" class="page">
+      <div>
+        <h1>Step Into Zindleverse</h1>
+        <p>Zindleverse is an imaginative expanse of floating islands and shimmering thoughts. Each corner reveals a new surprise.</p>
+      </div>
+    </div>
+
+    <div id="frobohub" class="page">
+      <div>
+        <h1>Discover Frobohub</h1>
+        <p>Frobohub is the high-tech center of Whimsy World where ideas come to life through invention and innovation.</p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function showPage(id) {
+      document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+      });
+      document.getElementById(id).classList.add('active');
+    }
+
+// Add click event to all gallery images
+document.querySelectorAll('.gallery img').forEach(img => {
+  img.addEventListener('click', () => {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    lightboxImg.src = img.src;
+    lightbox.style.display = 'block';
+  });
+});
+
+// Function to close lightbox
+function closeLightbox() {
+  document.getElementById('lightbox').style.display = 'none';
+}
+
+  </script>
+
+<script>
+  const galleryImages = Array.from(document.querySelectorAll('.gallery img'));
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  let currentIndex = 0;
+
+  galleryImages.forEach((img, index) => {
+    img.addEventListener('click', () => {
+      currentIndex = index;
+      openLightbox(currentIndex);
+    });
+  });
+
+  function openLightbox(index) {
+    lightboxImg.src = galleryImages[index].src;
+    lightbox.style.display = 'block';
+  }
+
+  function closeLightbox() {
+    lightbox.style.display = 'none';
+  }
+
+  function changeImage(direction) {
+    currentIndex += direction;
+    if (currentIndex < 0) currentIndex = galleryImages.length - 1;
+    if (currentIndex >= galleryImages.length) currentIndex = 0;
+    openLightbox(currentIndex);
+  }
+
+  // Optional: keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (lightbox.style.display === 'block') {
+      if (e.key === 'ArrowLeft') {
+        changeImage(-1);
+      } else if (e.key === 'ArrowRight') {
+        changeImage(1);
+      } else if (e.key === 'Escape') {
+        closeLightbox();
+      }
+    }
+  });
+</script>
+
+
+</body>
+</html>
